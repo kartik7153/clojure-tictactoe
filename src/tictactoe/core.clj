@@ -42,10 +42,10 @@
 
 (defn check-diagonal
   [board x y]
-  {:pre [(or (= x y) (= 3 (+ x y)))]}
+  {:pre [(or (= x y) (= 2 (+ x y)))]}
              (if (= x y)
                (for [i (range 3)] (apply = (get-in board i i)))
-              (for [i (range 3)] (apply = (get-in board i (- 3 i))))))
+              (for [i (range 3)] (apply = (get-in board i (- 2 i))))))
 
 (defn check-result
   [board x y]
