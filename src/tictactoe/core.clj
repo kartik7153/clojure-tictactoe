@@ -11,16 +11,7 @@
 ; 
 (def empty-board [[" " " " " "] [" " " " " "] [" " " " " "]])
 
-;(defn transpose-board
-; [board]
-; (let [transposed-board empty-board]
-; (doseq [x (range 3) y (range 3)]
-;   (println (show-board transposed-board))
-;    (def transposed-board (mark-square transposed-board x y (get-square board y x))))
-; transposed-board))
-
-(defn transpose-board
-  [board]
+(defn transpose-board [board]
   (apply mapv vector board))
 
 (defn show-row
@@ -40,12 +31,12 @@
   [board x]
   (apply = (get board x)))
 
+
 (defn check-diagonal
   [board x y]
-  {:pre [(or (= x y) (= 2 (+ x y)))]}
              (if (= x y)
-               (for [i (range 3)] (apply = (get-in board i i)))
-              (for [i (range 3)] (apply = (get-in board i (- 2 i))))))
+               (apply = (for [i (range 3)]  (get-in board [i i])))
+              (apply = (for [i (range 3)] (get-in board [i (- 2 i)])))))
 
 (defn check-result
   [board x y]
